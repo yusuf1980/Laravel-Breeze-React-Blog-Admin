@@ -1,34 +1,37 @@
-import { Link } from "@inertiajs/react"
+import { Link, usePage } from "@inertiajs/react"
 // import TemplateJs from "@/template"
 import { useEffect } from "react"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPenToSquare, faAdd } from "@fortawesome/free-solid-svg-icons"
 
 function Header({ user }) {
-    function responsiveSidePanel(sidePanel) {
-      let w = window.innerWidth;
-      if (w >= 1200) {
-        // if larger
-        //console.log('larger');
-        sidePanel.classList.remove('sidepanel-hidden');
-        sidePanel.classList.add('sidepanel-visible');
+  const { url } = usePage()
+  function responsiveSidePanel(sidePanel) {
+    let w = window.innerWidth;
+    if (w >= 1200) {
+      // if larger
+      //console.log('larger');
+      sidePanel.classList.remove('sidepanel-hidden');
+      sidePanel.classList.add('sidepanel-visible');
 
-      } else {
-        // if smaller
-        //console.log('smaller');
-        sidePanel.classList.remove('sidepanel-visible');
-        sidePanel.classList.add('sidepanel-hidden');
-      }
-    };
-    useEffect(() => {
-      const sidePanel = document.getElementById('app-sidepanel');
+    } else {
+      // if smaller
+      //console.log('smaller');
+      sidePanel.classList.remove('sidepanel-visible');
+      sidePanel.classList.add('sidepanel-hidden');
+    }
+  };
+  useEffect(() => {
+    const sidePanel = document.getElementById('app-sidepanel');
 
-      window.addEventListener('load', function () {
-        responsiveSidePanel(sidePanel);
-      });
+    window.addEventListener('load', function () {
+      responsiveSidePanel(sidePanel);
+    });
 
-      window.addEventListener('resize', function () {
-        responsiveSidePanel(sidePanel);
-      });
-    }, [responsiveSidePanel])
+    window.addEventListener('resize', function () {
+      responsiveSidePanel(sidePanel);
+    });
+  }, [responsiveSidePanel])
 
   function handlerToggle(e) {
     e.preventDefault
@@ -94,12 +97,12 @@ function Header({ user }) {
         <div className="sidepanel-inner d-flex flex-column">
           <a href="#" id="sidepanel-close" className="sidepanel-close d-xl-none">&times;</a>
           <div className="app-branding">
-            <Link className="app-logo" href={route('dashboard')}><img className="logo-icon me-2" src="images/app-logo.svg" alt="logo" /><span className="logo-text">PORTAL</span></Link>
+            <Link className="app-logo" href={route('dashboard')}><img className="logo-icon me-2" src="/images/app-logo.svg" alt="logo" /><span className="logo-text">PORTAL</span></Link>
           </div>
           <nav id="app-nav-main" className="app-nav app-nav-main flex-grow-1">
             <ul className="app-menu list-unstyled accordion" id="menu-accordion">
               <li className="nav-item">
-                <Link className="nav-link active" href={route('dashboard')}>
+                <Link className={`nav-link ${url === '/dashboard' ? "active" : ""}`} href={route('dashboard')}>
                   <span className="nav-icon">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-house-door" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                       <path fillRule="evenodd" d="M7.646 1.146a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5H9.5a.5.5 0 0 1-.5-.5v-4H7v4a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6zM2.5 7.707V14H6v-4a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4h3.5V7.707L8 2.207l-5.5 5.5z" />
@@ -107,6 +110,22 @@ function Header({ user }) {
                     </svg>
                   </span>
                   <span className="nav-link-text">Dashboard</span>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className={`nav-link ${url === '/posts' ? "active" : ""}`} href={route('posts.index')}>
+                  <span className="nav-icon">
+                    <FontAwesomeIcon icon={faPenToSquare} />
+                  </span>
+                  <span className="nav-link-text">Posts</span>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className={`nav-link ${url === '/posts/create' ? "active" : ""}`} href={route('posts.create')}>
+                  <span className="nav-icon">
+                    <FontAwesomeIcon icon={faAdd} />
+                  </span>
+                  <span className="nav-link-text">Create Post</span>
                 </Link>
               </li>
             </ul>
