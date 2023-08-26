@@ -1,22 +1,7 @@
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-// import { ClassicEditor } from '@ckeditor/ckeditor5-editor-classic';
-
-
-
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const Form = ({ data, setData, errors, processing, onSubmit }) => {
-  const editorConfiguration = {
-    // plugins: [Bold, Italic],
-    // toolbar: ['bold', 'italic']
-    toolbar: {
-    //   items: ['bold'
-    // //   'italic', 'heading', '|', 'numberedList',
-    // //     'bulletedList', '|', 'imageUpload', 'mediaEmbed', 'blockQuote', 'link'
-    //   ],
-    },
-
-  };
 
   return (
     <form onSubmit={onSubmit} className='settings-form'>
@@ -50,21 +35,23 @@ const Form = ({ data, setData, errors, processing, onSubmit }) => {
         </select>
       </div>
       <div className="item py-3">
-        <CKEditor
-          editor={ClassicEditor}
-          data={data.content}
-        //   config={editorConfiguration}
-        //   onReady={editor => {
-        //   }}
-          onChange={(event, editor) => {
-            const data = editor.getData();
-
-            setData('content', data)
+        <ReactQuill
+          theme="snow"
+          value={data.content}
+          onChange={(e)=>setData('content', value)}
+          modules={{
+            syntax: true,              // Include syntax module
+            toolbar: [
+              [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+              ['bold', 'italic'],
+              ['link', 'image'],
+              ['blockquote', 'code-block'],
+              [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+              [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+              [{ 'font': [] }],
+              [{ 'align': [] }],
+            ]  // Include button in toolbar
           }}
-        //   onBlur={(event, editor) => {
-        //   }}
-        //   onFocus={(event, editor) => {
-        //   }}
         />
       </div>
       <button type="submit" disabled={processing} className="btn app-btn-primary mb-4" >Save</button>

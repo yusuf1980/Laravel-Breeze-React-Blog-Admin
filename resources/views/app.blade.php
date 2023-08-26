@@ -7,6 +7,8 @@
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Scripts -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         @routes
         @viteReactRefresh
         @vite(['resources/scss/app.scss', 'resources/js/app.jsx', "resources/js/Pages/{$page['component']}.jsx"])
