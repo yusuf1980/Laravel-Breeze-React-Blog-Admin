@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
             $table->string('title');
+            $table->integer('user_id')->unsigned();
             $table->enum('status', ['draft', 'published'])->default('draft');
+            $table->integer('category_id')->unsigned()->nullable();
             // $table->bigInteger('total_like')->default(0);
             // $table->bigInteger('total_dislike')->default(0);
             $table->timestamp('published_date')->useCurrent();
@@ -26,6 +27,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
