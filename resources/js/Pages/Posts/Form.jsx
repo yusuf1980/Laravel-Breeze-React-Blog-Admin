@@ -1,5 +1,5 @@
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import ReactQuill, { Quill } from 'react-quill';
+// import 'react-quill/dist/quill.snow.css';
 
 const Form = ({ data, setData, errors, processing, onSubmit }) => {
 
@@ -38,7 +38,7 @@ const Form = ({ data, setData, errors, processing, onSubmit }) => {
         <ReactQuill
           theme="snow"
           value={data.content}
-          onChange={(e)=>setData('content', value)}
+          onChange={(e) => setData('content', e)}
           modules={{
             syntax: true,              // Include syntax module
             toolbar: [
@@ -52,7 +52,16 @@ const Form = ({ data, setData, errors, processing, onSubmit }) => {
               [{ 'align': [] }],
             ]  // Include button in toolbar
           }}
+          placeholder='Type your text here'
+        //   languages={['javascript', 'php']}
         />
+        <div className='ql-snow'>
+          <div className="ql-editor " dangerouslySetInnerHTML={{
+            __html: data.content
+          }}>
+            {/* {data.content} */}
+          </div>
+        </div>
       </div>
       <button type="submit" disabled={processing} className="btn app-btn-primary mb-4" >Save</button>
     </form>

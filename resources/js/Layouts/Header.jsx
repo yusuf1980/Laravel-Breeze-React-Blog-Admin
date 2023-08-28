@@ -97,7 +97,7 @@ function Header({ user }) {
         <div className="sidepanel-inner d-flex flex-column">
           <a href="#" id="sidepanel-close" className="sidepanel-close d-xl-none">&times;</a>
           <div className="app-branding">
-            <Link className="app-logo" href={route('dashboard')}><img className="logo-icon me-2" src="/images/app-logo.svg" alt="logo" /><span className="logo-text">PORTAL</span></Link>
+            <Link className="app-logo" href='/'><img className="logo-icon me-2" src="/images/app-logo.svg" alt="logo" /><span className="logo-text">PORTAL</span></Link>
           </div>
           <nav id="app-nav-main" className="app-nav app-nav-main flex-grow-1">
             <ul className="app-menu list-unstyled accordion" id="menu-accordion">

@@ -46,3 +46,242 @@ $theme-colors: (
 /*************************** Theme Styles Section ****************************/
 @import "app/styles.scss";
 
+@import 'react-quill/dist/quill.snow.css';
+
+// .hljs-deletion, .hljs-number, .hljs-quote, .hljs-selector-class, .hljs-selector-id, .hljs-string, .hljs-template-tag, .hljs-type {
+//     color: #ea6666;
+// }
+code[class*="language-"],
+pre[class*="language-"] {
+	color: black;
+	background: none;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 1em;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	position: relative;
+	margin: .5em 0;
+	overflow: visible;
+	padding: 0;
+}
+pre[class*="language-"]>code {
+	position: relative;
+	border-left: 10px solid #358ccb;
+	box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
+	background-color: #fdfdfd;
+	background-image: linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
+	background-size: 3em 3em;
+	background-origin: content-box;
+	background-attachment: local;
+}
+
+code[class*="language"] {
+	max-height: inherit;
+	height: inherit;
+	padding: 0 1em;
+	display: block;
+	overflow: auto;
+}
+
+/* Margin bottom to accommodate shadow */
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background-color: #fdfdfd;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	margin-bottom: 1em;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	position: relative;
+	padding: .2em;
+	border-radius: 0.3em;
+	color: #c92c2c;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	display: inline;
+	white-space: normal;
+}
+
+pre[class*="language-"]:before,
+pre[class*="language-"]:after {
+	content: '';
+	z-index: -2;
+	display: block;
+	position: absolute;
+	bottom: 0.75em;
+	left: 0.18em;
+	width: 40%;
+	height: 20%;
+	max-height: 13em;
+	box-shadow: 0px 13px 8px #979797;
+	-webkit-transform: rotate(-2deg);
+	-moz-transform: rotate(-2deg);
+	-ms-transform: rotate(-2deg);
+	-o-transform: rotate(-2deg);
+	transform: rotate(-2deg);
+}
+
+:not(pre) > code[class*="language-"]:after,
+pre[class*="language-"]:after {
+	right: 0.75em;
+	left: auto;
+	-webkit-transform: rotate(2deg);
+	-moz-transform: rotate(2deg);
+	-ms-transform: rotate(2deg);
+	-o-transform: rotate(2deg);
+	transform: rotate(2deg);
+}
+
+.hljs-token.hljs-comment,
+.hljs-token.hljs-block-comment,
+.hljs-token.prolog,
+.hljs-token.doctype,
+.hljs-token.cdata {
+	color: #7D8B99;
+}
+
+.hljs-token.hljs-punctuation {
+	color: #5F6364;
+}
+
+.hljs-token.property,
+.hljs-token.tag,
+.hljs-token.boolean,
+.hljs-token.number,
+.hljs-token.function-name,
+.hljs-token.constant,
+.hljs-token.symbol,
+.hljs-token.deleted {
+	color: #c92c2c;
+}
+
+.hljs-token.selector,
+.hljs-token.attr-name,
+.hljs-token.hljs-string,
+.hljs-token.char,
+.hljs-token.function,
+.hljs-token.builtin,
+.hljs-token.inserted {
+	color: #2f9c0a;
+}
+
+.hljs-token.hljs-operator,
+.hljs-token.entity,
+.hljs-token.url,
+.hljs-token.variable {
+	color: #a67f59;
+	background: rgba(255, 255, 255, 0.5);
+}
+
+.hljs-token.atrule,
+.hljs-token.attr-value,
+.hljs-token.hljs-keyword,
+.hljs-token.hljs-class-name {
+	color: #1990b8;
+}
+
+.hljs-token.regex,
+.hljs-token.important {
+	color: #e90;
+}
+
+.language-css .hljs-token.hljs-string,
+.style .hljs-token.hljs-string {
+	color: #a67f59;
+	background: rgba(255, 255, 255, 0.5);
+}
+
+.hljs-token.important {
+	font-weight: normal;
+}
+
+.hljs-token.bold {
+	font-weight: bold;
+}
+.hljs-token.italic {
+	font-style: italic;
+}
+
+.hljs-token.entity {
+	cursor: help;
+}
+
+.hljs-token.namespace {
+	opacity: .7;
+}
+
+@media screen and (max-width: 767px) {
+	pre[class*="language-"]:before,
+	pre[class*="language-"]:after {
+		bottom: 14px;
+		box-shadow: none;
+	}
+
+}
+
+/* Plugin styles */
+.hljs-token.tab:not(:empty):before,
+.hljs-token.cr:before,
+.hljs-token.lf:before {
+	color: #e0d7d1;
+}
+
+/* Plugin styles: Line Numbers */
+pre[class*="language-"].line-numbers.line-numbers {
+	padding-left: 0;
+}
+
+pre[class*="language-"].line-numbers.line-numbers code {
+	padding-left: 3.8em;
+}
+
+pre[class*="language-"].line-numbers.line-numbers .line-numbers-rows {
+	left: 0;
+}
+
+/* Plugin styles: Line Highlight */
+pre[class*="language-"][data-line] {
+	padding-top: 0;
+	padding-bottom: 0;
+	padding-left: 0;
+}
+pre[data-line] code {
+	position: relative;
+	padding-left: 4em;
+}
+pre .line-highlight {
+	margin-top: 0;
+}
+
+
+.ql-snow .ql-editor pre.ql-syntax {
+	position: relative;
+	border-left: 10px solid #358ccb;
+	box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
+	background-color: #fdfdfd;
+	background-image: linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
+	background-size: 3em 3em;
+	background-origin: content-box;
+	background-attachment: local;
+	color:black;
+}
+

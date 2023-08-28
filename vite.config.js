@@ -4,9 +4,14 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 
 export default defineConfig({
+    publicDir: '/',
     plugins: [
         laravel({
-            input: ["resources/scss/app.scss", "resources/js/app.jsx"],
+            input: [
+                "resources/scss/app.scss",
+                "resources/assets/highlight/highlight.min.js",
+                "resources/js/app.jsx"
+            ],
             refresh: true,
         }),
         react(),
@@ -14,6 +19,7 @@ export default defineConfig({
     resolve: {
         alias: {
             "~bootstrap": path.resolve(__dirname, "node_modules/bootstrap"),
+            "~highlight": path.resolve(__dirname, "resources/assets/highlight/styles"),
         },
     },
     // optimizeDeps: {
