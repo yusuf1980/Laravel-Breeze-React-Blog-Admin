@@ -14,7 +14,7 @@ class PostController extends Controller
 {
     public function index(): response
     {
-        $posts = Post::orderBy('id', 'desc')->get();
+        $posts = Post::orderBy('id', 'desc')->paginate(10);
 
         return inertia::render('Posts/index', [
             'posts' => $posts

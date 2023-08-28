@@ -1,5 +1,6 @@
 import AuthenticatedLayout from '../../Layouts/AuthenticatedLayout'
 import { Link, useForm } from '@inertiajs/react'
+import Pagination from '@/Components/Pagination'
 
 export default function index({ auth, posts }) {
   const { delete: destroy } = useForm()
@@ -35,7 +36,7 @@ export default function index({ auth, posts }) {
                   </tr>
                 </thead>
                 <tbody>
-                  {posts.map((post) => (
+                  {posts.data.map((post) => (
                     <tr key={post.id}>
                       <td>{post.title}</td>
                       <td>{post.status}</td>
@@ -53,6 +54,9 @@ export default function index({ auth, posts }) {
 
                 </tbody>
               </table>
+
+              <Pagination class="mt-6" links={posts.links} />
+
             </div>
           </div>
         </div>
