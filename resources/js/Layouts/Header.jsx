@@ -2,7 +2,7 @@ import { Link, usePage } from "@inertiajs/react"
 // import TemplateJs from "@/template"
 import { useEffect } from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPenToSquare, faAdd, faList } from "@fortawesome/free-solid-svg-icons"
+import { faPenToSquare, faAdd, faList, faUsers } from "@fortawesome/free-solid-svg-icons"
 
 function Header({ user }) {
   const { url } = usePage()
@@ -134,6 +134,14 @@ function Header({ user }) {
                     <FontAwesomeIcon icon={faList} />
                   </span>
                   <span className="nav-link-text">Categories</span>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className={`nav-link ${url === '/users' ? "active" : ""}`} href={route('users.index')}>
+                  <span className="nav-icon">
+                    <FontAwesomeIcon icon={faUsers} />
+                  </span>
+                  <span className="nav-link-text">Users</span>
                 </Link>
               </li>
             </ul>
