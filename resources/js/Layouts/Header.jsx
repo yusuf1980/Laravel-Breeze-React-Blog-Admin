@@ -2,7 +2,7 @@ import { Link, usePage } from "@inertiajs/react"
 // import TemplateJs from "@/template"
 import { useEffect } from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPenToSquare, faAdd } from "@fortawesome/free-solid-svg-icons"
+import { faPenToSquare, faAdd, faList } from "@fortawesome/free-solid-svg-icons"
 
 function Header({ user }) {
   const { url } = usePage()
@@ -113,6 +113,14 @@ function Header({ user }) {
                 </Link>
               </li>
               <li className="nav-item">
+                <Link className={`nav-link ${url === '/posts/create' ? "active" : ""}`} href={route('posts.create')}>
+                  <span className="nav-icon">
+                    <FontAwesomeIcon icon={faAdd} />
+                  </span>
+                  <span className="nav-link-text">Create Post</span>
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link className={`nav-link ${url === '/posts' ? "active" : ""}`} href={route('posts.index')}>
                   <span className="nav-icon">
                     <FontAwesomeIcon icon={faPenToSquare} />
@@ -121,11 +129,11 @@ function Header({ user }) {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className={`nav-link ${url === '/posts/create' ? "active" : ""}`} href={route('posts.create')}>
+                <Link className={`nav-link ${url === '/categories' ? "active" : ""}`} href={route('categories.index')}>
                   <span className="nav-icon">
-                    <FontAwesomeIcon icon={faAdd} />
+                    <FontAwesomeIcon icon={faList} />
                   </span>
-                  <span className="nav-link-text">Create Post</span>
+                  <span className="nav-link-text">Categories</span>
                 </Link>
               </li>
             </ul>

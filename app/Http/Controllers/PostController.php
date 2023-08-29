@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Inertia\Inertia;
@@ -26,12 +28,8 @@ class PostController extends Controller
         return inertia::render('Posts/Create', ['status' => session('status')]);
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(StorePostRequest $request): RedirectResponse
     {
-        $request->validate([
-            'title' => ['required', 'min:3'],
-        ]);
-
         $user_id = Auth::user()->id;
         Post::create([
             'title' => $request->title,
@@ -49,12 +47,9 @@ class PostController extends Controller
         return inertia::render('Posts/Edit', ['post'=>$post]);
     }
 
-    public function update(Request $request, $id): RedirectResponse
+    public function update(UpdatePostRequest $request, $id): RedirectResponse
     {
         $post = Post::findOrFail($id);
-        $request->validate([
-            'title' => ['required', 'min:3'],
-        ]);
         $post->title = $request->title;
         $post->status = $request->status;
         $post->content = $request->content;
