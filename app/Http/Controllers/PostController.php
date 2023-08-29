@@ -11,12 +11,13 @@ use Inertia\Response;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\Category;
 
 class PostController extends Controller
 {
     public function index(): response
     {
-        $posts = Post::orderBy('id', 'desc')->paginate(10);
+        $posts = Post::with('category')->orderBy('id', 'desc')->paginate(10);
 
         return inertia::render('Posts/index', [
             'posts' => $posts
@@ -25,7 +26,11 @@ class PostController extends Controller
 
     public function create(): response
     {
-        return inertia::render('Posts/Create', ['status' => session('status')]);
+        $categories = Category::select('id', 'name')->orderBy('name', 'asc')->get();
+        return inertia::render('Posts/Create', [
+            'status' => session('status'),
+            'categories' => $categories
+        ]);
     }
 
     public function store(StorePostRequest $request): RedirectResponse
@@ -44,7 +49,11 @@ class PostController extends Controller
     public function Edit($id): response
     {
         $post = Post::findOrFail($id);
-        return inertia::render('Posts/Edit', ['post'=>$post]);
+        $categories = Category::select('id', 'name')->orderBy('name', 'asc')->get();
+        return inertia::render('Posts/Edit', [
+            'post'=>$post,
+            'categories' => $categories
+        ]);
     }
 
     public function update(UpdatePostRequest $request, $id): RedirectResponse
@@ -53,6 +62,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->status = $request->status;
         $post->content = $request->content;
+        $post->category_id = $request->category_id;
         $post->save();
 
         return Redirect::route('posts.index');

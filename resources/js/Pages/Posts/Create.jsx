@@ -4,11 +4,12 @@ import { faAdd } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from '@inertiajs/react';
 import Form from './Form';
 
-const Create = ({ auth }) => {
+const Create = ({ auth, categories }) => {
   const { data, setData, errors, processing, recentlySuccessful, post } = useForm({
     title: '',
     status: 'published',
     content: '',
+    category_id: ''
   })
   const submit = (e) => {
     e.preventDefault()
@@ -40,6 +41,7 @@ const Create = ({ auth }) => {
           errors={errors}
           processing={processing}
           onSubmit={submit}
+          categories={categories}
           />
         </div>
       </div>

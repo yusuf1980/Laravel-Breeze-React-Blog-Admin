@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->integer('user_id')->unsigned();
             $table->enum('status', ['draft', 'published'])->default('draft');
-            $table->integer('category_id')->unsigned()->nullable();
+            $table->integer('category_id')->unsigned();
             // $table->bigInteger('total_like')->default(0);
             // $table->bigInteger('total_dislike')->default(0);
             $table->timestamp('published_date')->useCurrent();

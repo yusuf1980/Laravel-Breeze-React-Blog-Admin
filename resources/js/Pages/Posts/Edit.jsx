@@ -4,14 +4,13 @@ import { faAdd } from '@fortawesome/free-solid-svg-icons';
 import { useForm, usePage } from '@inertiajs/react';
 import Form from './Form';
 
-const Edit = ({ auth, post } ) => {
-//   const { post } = usePage().props
+const Edit = ({ auth, post, categories } ) => {
   const { data, setData, errors, processing, recentlySuccessful, put } = useForm({
     title: post.title,
     status: post.status,
     content: post.content,
+    category_id: post.category_id
   })
-//   console.log(post)
   const submit = (e) => {
     e.preventDefault()
 
@@ -42,6 +41,7 @@ const Edit = ({ auth, post } ) => {
           errors={errors}
           processing={processing}
           onSubmit={submit}
+          categories={categories}
           />
         </div>
       </div>

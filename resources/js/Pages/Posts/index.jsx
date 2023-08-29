@@ -30,6 +30,7 @@ export default function index({ auth, posts }) {
                 <thead>
                   <tr>
                     <th>Title</th>
+                    <th>Category</th>
                     <th>Status</th>
                     <th>Date</th>
                     <th>Action</th>
@@ -39,6 +40,7 @@ export default function index({ auth, posts }) {
                   {posts.data.map((post) => (
                     <tr key={post.id}>
                       <td>{post.title}</td>
+                      <td>{post.category.name}</td>
                       <td>{post.status}</td>
                       <td>{post.published_date}</td>
                       <td>
